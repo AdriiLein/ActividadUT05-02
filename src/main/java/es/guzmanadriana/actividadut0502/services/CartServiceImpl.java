@@ -45,7 +45,7 @@ public class CartServiceImpl implements CartService {
         Product product = productRepository.findById(cartItemDTO.getProductId()).orElseThrow(() -> new RuntimeException("Producto no encontrado"));
 
         CartItem cartItem = cartItemRepository.findByCustomerAndProduct(customer, product)
-                .orElse(new CartItem(null, cartItemDTO.getQuantity(), customer, product));
+                .orElse(new CartItem(cartItemDTO.getQuantity(), customer, product));
 
         cartItem.setQuantity(cartItem.getQuantity() + cartItemDTO.getQuantity());
         cartItemRepository.save(cartItem);

@@ -1,14 +1,9 @@
 package es.guzmanadriana.actividadut0502.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-
 import java.util.Set;
 
-@Getter
 @Entity
-@AllArgsConstructor
 @Table(name = "categories")
 public class Category {
     @Id
@@ -22,4 +17,35 @@ public class Category {
     @ManyToMany(mappedBy = "categories")
     private Set<Product> products;
 
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
 }
