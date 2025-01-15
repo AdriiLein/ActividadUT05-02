@@ -3,9 +3,13 @@ package es.guzmanadriana.actividadut0502.Entidades;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Getter
+@Setter
 @Entity
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "products")
 public class Product {
     @Id
@@ -17,9 +21,10 @@ public class Product {
     private String name;
     private String description;
 
-    public Product() {}
-
     @ManyToOne
-    @JoinColumn(name="category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
+
+    @ManyToMany(mappedBy = "products")
+    private Set<Wishlist> wishlists;
 }

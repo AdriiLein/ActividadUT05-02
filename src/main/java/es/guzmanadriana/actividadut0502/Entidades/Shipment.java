@@ -1,31 +1,34 @@
 package es.guzmanadriana.actividadut0502.Entidades;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @Entity
+@NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "shipments")
 public class Shipment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer shipmentId;
-    private Timestamp shipmentDate = Timestamp.valueOf(LocalDateTime.now());
+
+    private Timestamp shipmentDate;
+
     private String zipCode;
+
     private String city;
+
     private String country;
+
     private String state;
+
     private String address;
 
-    public Shipment() {}
-
     @OneToOne
-    @JoinColumn(name = "order_id", nullable = true)
+    @JoinColumn(name = "order_id", nullable = false)
     private Order order;
-
 }
